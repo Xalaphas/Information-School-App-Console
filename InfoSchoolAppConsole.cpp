@@ -52,9 +52,38 @@ int main()
     p1.teenager = "";
     p1.adult = "";
     p1.old = "";
+    p1.name;
+    p1.isGamer;
+
+    bool isProPlayer;
+    bool isNoobPlayer;
+    string resposta;
+    char answare;
 
     //entrada de dados do aluno
+    std::cout << "Seu nome:\n";
+    std::cin >> p1.name;
 
+    while (true)
+    {
+    std::cout << "Como foi a sua partida(boa/ruim)\n";
+    std::cin >> resposta;
+    if (resposta == "boa")
+    {
+        isProPlayer = true;
+        isNoobPlayer = false;
+        std::cout << "Insane gameplays, joga e joga\n";
+    }
+    else if (resposta == "ruim")
+    {
+    std::cout << verificadorPartidas(p1.isGamer, isProPlayer, isNoobPlayer, answare, resposta) << std::endl;
+    }
+    else
+    {
+       std::cout << "Insira uma resposta valida, por favor\n";
+    }
+    }
+    
     t1.old = "";
     t1.young = "";
     t1.hot = "";
@@ -74,7 +103,7 @@ int calculadoraMedia(){
     return 0;
 }
 
-string verificadorPartidas(){
+string verificadorPartidas(bool isGamer, bool isProPlayer, bool isNoobPlayer, char answare, string resposta){
     //verificar se o aluno teve uma boa partida no jogo
 
    /*
@@ -109,5 +138,47 @@ EXIBA "Voce eh um gamer?"
 FIM_ENQUANTO
 FIM
    */
-    return 0;
+
+bool isLiar;
+bool isGoodGame;
+while (true)
+{
+    std::cout << "Voce realmente eh um gamer?(s/n)\n";
+    std::cin >> answare;
+    if (answare  == 's')
+    {
+        std::cout << "Zerou todos os GTA que nem o Davy Jones?SKSKSKKSKKSKSKKSKKSKS larga mao de ser otario seu merda\n";
+        break;
+        return isLiar = true;
+    }
+    else if (answare == 'n')
+    {
+        std::cout << "Eres noob?(sim/nao)\n";
+        std::cin >> resposta;
+        if (resposta == "sim")
+        {
+            isNoobPlayer = true;
+            isProPlayer = false;
+            std::cout << "Ala muito ruim! hahahahahahahah\n";
+            break;
+            return isGoodGame = false;
+        }
+        else if (resposta == "nao")
+        {
+            isNoobPlayer = false;
+            isProPlayer = true;
+            std::cout << "ala o Davys Jones Jr skkskakskskksksks\n";
+            break;
+            return isGoodGame = true;
+        }
+        else
+        {
+            std::cout << "Insira uma resposta valida, por favor\n";
+        }
+    }
+    else
+    {
+        std::cout << "Insira uma resposta valida, por favor\n";
+    }
+}
 }
