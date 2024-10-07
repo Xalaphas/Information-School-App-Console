@@ -1,120 +1,100 @@
 #include <iostream>
 #include <string>
-using namespace std;
 
-struct person {
-    string name;
+struct Person {
+    std::string name;
     int birthYear;
     int currentYear;
     bool isGamer;
 };
 
-struct teacher
-{
-    string name;
+struct Teacher {
+    std::string name;
     int age;
-    bool isAnoying;
+    bool isAnnoying;
     bool isHot;
     bool isCool;
 };
 
-
 int ageCalculator(int currentYear, int birthYear) {
-    int idade = currentYear - birthYear;
-    return idade;
+    int age = currentYear - birthYear;
+    return age;
 }
 
-string verificadorPartidas(bool isGamer, string resposta) {
+std::string verificadorPartidas(bool isGamer) {
     if (isGamer) {
-        return resposta = "Voce eh um gamer";
+        return "Você é um gamer";
     } else {
-        return resposta = "Voce nao eh um gamer";
+        return "Você não é um gamer";
     }
 }
 
-string isTeacherHot(bool isAnnoying, bool isHot, bool isCool, string resposta){
-    if (isHot)
-    {
-        isAnnoying = false;
-        isCool = false;
-        return resposta = "Carai moh garanhao o prof, macetando todas minas da sala e as outras professoras junto";
+std::string isTeacherHot(bool isAnnoying, bool isHot, bool isCool) {
+    if (isHot) {
+        return "Carai moh garanhão o prof, macetando todas minas da sala e as outras professoras junto";
+    } else if (isAnnoying) {
+        return "Puta que pariu, moh velho chato da porra";
+    } else {
+        return "O prof é legal, mas não é o meu tipo";
     }
-    else if (isAnnoying)
-    {
-        isHot = false;
-        isCool = false;
-        return resposta = "Puta que pariu, moh velho chato da porra";
-    }
-    else
-    {
-        isCool = true;
-        isHot = false;
-        isAnnoying = false;
-        return resposta = "O prof eh legal, mas nao eh o meu tipo";
-    }
-    
 }
 
 int main() {
-    person p1;
-    string resposta;
+    Person p1;
+    std::string resposta;
 
     // Entrada de dados do aluno
-    cout << "Seu nome:\n";
-    cin >> p1.name;
+    std::cout << "Seu nome:\n";
+    std::cin >> p1.name;
 
-    cout << "Que ano voce nasceu?\n";
-    cin >> p1.birthYear;
+    std::cout << "Que ano você nasceu?\n";
+    std::cin >> p1.birthYear;
 
-    cout << "Qual eh o ano atual?\n";
-    cin >> p1.currentYear;
+    std::cout << "Qual é o ano atual?\n";
+    std::cin >> p1.currentYear;
 
     int idade = ageCalculator(p1.currentYear, p1.birthYear);
-    cout << "Voce tem " << idade << " anos\n";
+    std::cout << "Você tem " << idade << " anos\n";
 
     if (idade < 0) {
-        cout << "Voce nao nasceu ainda" << endl;
+        std::cout << "Você não nasceu ainda" << std::endl;
     } else if (idade < 13) {
-        cout << "Voce eh uma criancinha ainda" << endl;
+        std::cout << "Você é uma criancinha ainda" << std::endl;
     } else if (idade < 18) {
-        cout << "Voce ja eh um adolescente" << endl;
+        std::cout << "Você já é um adolescente" << std::endl;
     } else {
-        cout << "Voce ja eh um adulto" << endl;
+        std::cout << "Você já é um adulto" << std::endl;
     }
 
     // Verificação se é gamer
     char answare;
-    cout << "Voce eh gamer? (s/n)\n";
-    cin >> answare;
+    std::cout << "Você é gamer? (s/n)\n";
+    std::cin >> answare;
     p1.isGamer = (answare == 's');
+    std::cout << verificadorPartidas(p1.isGamer) << std::endl;
 
-    cout << verificadorPartidas(p1.isGamer, resposta) << endl;
+    Teacher prof;
 
-    teacher prof;
-    
+    // Entrada de dados do professor
+    std::cout << "Seu nome:\n";
+    std::cin >> prof.name;
+    std::cout << "Qual é a sua idade?\n";
+    std::cin >> prof.age;
 
-    //entrada de dados do professor
-    cout << "Seu nome:\n";
-    cin >> prof.name;
-    std::cout << "Qual a sua idade?\n";
-    cin >> prof.age;
-    int ageTeacher = isTeacherHot(prof.isAnoying, prof.isHot, prof.isCool, resposta);
-    if (ageTeacher >= 26)
-    {
+    // Inicialize as variáveis de estado do professor
+    prof.isAnnoying = false;
+    prof.isHot = false;
+    prof.isCool = false;
+
+    if (prof.age >= 26) {
         prof.isHot = true;
-        std::cout << isTeacherHot(prof.isAnoying, prof.isHot, prof.isCool, resposta) << std::endl;
-    }
-    else if (ageTeacher >= 27 && ageTeacher <= 38)
-    {
+    } else if (prof.age >= 27 && prof.age <= 38) {
         prof.isCool = true;
-        std::cout << isTeacherHot(prof.isAnoying, prof.isHot, prof.isCool, resposta) << std::endl;
+    } else {
+        prof.isAnnoying = true;
     }
-    else
-    {
-        prof.isAnoying = true;
-        std::cout << isTeacherHot(prof.isAnoying, prof.isHot, prof.isCool, resposta) << std::endl;
-    }
-    
+
+    std::cout << isTeacherHot(prof.isAnnoying, prof.isHot, prof.isCool) << std::endl;
 
     return 0;
 }
